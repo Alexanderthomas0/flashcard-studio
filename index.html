@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flashcard Studio</title>
+<style>
+body{font-family:Arial;background:#eff6ff;padding:25px}
+main{max-width:600px;margin:auto;background:white;padding:25px;border-radius:15px}
+input{width:100%;padding:12px;margin:8px 0;box-sizing:border-box;border:1px solid #93c5fd;border-radius:6px}
+button{background:#1d4ed8;color:white;padding:12px 18px;border:0;border-radius:6px;cursor:pointer;margin:5px 0}
+#card{min-height:160px;background:#dbeafe;display:grid;place-items:center;text-align:center;padding:20px;border-radius:12px;margin:20px 0;font-size:23px;cursor:pointer;overflow-wrap:anywhere}
+</style>
+</head>
+<body>
+<main>
+<h1>Flashcard Studio</h1>
+<p>Learn smarter with personalized flashcards.</p>
+<input id="question" placeholder="Enter question">
+<input id="answer" placeholder="Enter answer">
+<button onclick="addCard()">Create Flashcard</button>
+<div id="card" onclick="flip()">No flashcards yet.</div>
+<p id="status"></p>
+<button onclick="previous()">Previous</button>
+<button onclick="next()">Next</button>
+<button onclick="removeCard()">Delete</button>
+</main>
+<script>
+let cards=JSON.parse(localStorage.getItem("flashcards")||"[]");
+let index=0;
+let flipped=false;
+function render(){
+ document.getElementById("card").textContent=
+ cards.length?(flipped?cards[index].answer:cards[index].question):"No flashcards yet.";
+ document.getElementById("status").textContent=
+ cards.length?"Card "+(index+1)+" of "+cards.length:"0 cards";
+}
+function save(){
+ localStorage.setItem("flashcards",JSON.stringify(cards));
+ render();
+}
+function addCard(){
+ const q=document.getElementById("question");
+ const a=document.getElementById("answer");
+ if(!q.value.trim()||!a.value.trim()) return;
+ cards.push({question:q.value.trim(),answer:a.value.trim()});
+ index=cards.length-1;
+ flipped=false;
+ q.value=a.value="";
+ save();
+}
+function flip(){
+ if(!cards.length) return;
+ flipped=!flipped;
+ render();
+}
+function next(){
+ if(!cards.length) return;
+ index=(index+1)%cards.length;
+ flipped=false;
+ render();
+}
+function previous(){
+ if(!cards.length) return;
+ index=(index-1+cards.length)%cards.length;
+ flipped=false;
+ render();
+}
+function removeCard(){
+ if(!cards.length) return;
+ cards.splice(index,1);
+ index=Math.max(0,Math.min(index,cards.length-1));
+ flipped=false;
+ save();
+}
+render();
+</script>
+</body>
+</html>
