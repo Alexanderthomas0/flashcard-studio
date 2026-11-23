@@ -1,23 +1,23 @@
-# Flashcard Studio
+## Flashcard Learning Guide
 
-A study tool for creating personalized flashcards.
+Flashcards provide a simple method
+for practicing and reviewing information.
 
-## Features
+### Learning Features
 
-- Custom questions and answers
-- Card navigation
-- Local storage
+- Create question cards
+- Add answer information
+- Review learning materials
+- Practice active recall
 
-## How to Use
+### How to Use
 
-Create a flashcard and select it to reveal the answer.
+1. Create a new flashcard.
+2. Enter a question.
+3. Add the corresponding answer.
+4. Review the card and test your knowledge.
 
-## Technologies
+### Learning Tips
 
-- HTML
-- CSS
-- JavaScript
-
-## Running Locally
-
-Open `index.html` in a modern web browser.
+Practice regularly and review
+difficult questions more frequently.
