@@ -21,3 +21,12 @@ for practicing and reviewing information.
 
 Practice regularly and review
 difficult questions more frequently.
+## Manual Testing Checklist
+
+- [ ] Create a card with a question and answer.
+- [ ] Reveal the answer and verify the correct card is shown.
+- [ ] Review behavior when a card field is empty.
+
+### Test Notes
+
+Record the observed result and any reproducible issue after running the tests.
